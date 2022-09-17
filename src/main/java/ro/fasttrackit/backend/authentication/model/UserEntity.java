@@ -22,7 +22,7 @@ public record UserEntity(@Id String id,
                          List<GrantedAuthority> authorities,
                          @Indexed(unique = true)
                          String email,
-                         @DBRef List<TablePermissionsEntity> accesibleTables
+                         @DBRef List<SpreadsheetPermissionsEntity> accesibleTables
 ) implements UserDetails
 {
     @Override
