@@ -12,17 +12,15 @@ import java.util.List;
 
 @Document(collection = "users")
 public record UserEntity(@Id String id,
-                         @Indexed(unique = true)
-                         String username,
+                         @Indexed(unique = true) String username,
                          String password,
                          Boolean accountNonExpired,
                          Boolean accountNonLocked,
                          Boolean credentialsNonExpired,
                          Boolean enabled,
                          List<GrantedAuthority> authorities,
-                         @Indexed(unique = true)
-                         String email,
-                         @DBRef List<SpreadsheetPermissionsEntity> accesibleTables
+                         @Indexed(unique = true) String email,
+                         @DBRef List<SpreadsheetPermissionsEntity> accesibleSpreadsheets
 ) implements UserDetails
 {
     @Override

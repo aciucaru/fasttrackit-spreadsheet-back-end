@@ -17,6 +17,11 @@ import ro.fasttrackit.backend.authentication.repository.UserRepository;
 
 import java.util.ArrayList;
 
+/* Clasa pentru toate configurarile de securitate.
+*  Se folosesc useri 'in-memory', dar acesti useri sunt mai intai populati in data loader si pusi in baza
+*  de date, iar de abia apoi acei useri sunt luati din baza de date MongoDB si sunt folositi pt. a crea
+*  useri in memory de tip Spring. Dezavantajul utilizarii userilor in memory este ca nu se pot adauga
+*  useri noi, ramana doar cei generati la inceput. */
 @Configuration
 public class SecurityConfig
 {
