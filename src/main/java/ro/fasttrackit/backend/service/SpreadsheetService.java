@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Optional;
 
 import ro.fasttrackit.backend.model.SpreadsheetEntity;
+import ro.fasttrackit.backend.repository.SpreadsheetRepository;
 
 public class SpreadsheetService
 {
     private final SpreadsheetRepository repo;
 
-    public TableService(SpreadsheetRepository repo)
+    public SpreadsheetService(SpreadsheetRepository repo)
     {
         this.repo = repo;
     }

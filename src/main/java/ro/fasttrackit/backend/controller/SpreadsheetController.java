@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ro.fasttrackit.backend.model.SpreadsheetEntity;
+import ro.fasttrackit.backend.service.SpreadsheetService;
 
 @RestController
 @RequestMapping("sheets")
@@ -20,7 +21,7 @@ public class SpreadsheetController
 {
     private final SpreadsheetService service;
 
-    public TableController(SpreadsheetService service)
+    public SpreadsheetController(SpreadsheetService service)
     {
         this.service = service;
     }
