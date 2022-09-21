@@ -40,7 +40,8 @@ randului din care face.
 public record ColumnInfo(String name, // numele afisat al coloanei (un fel de "header" sau "caption")
                          ColumnType colType, // tipul tuturor celulelor coloanei
                          GeneratingMethod genMethod, // modul in care se genereaza valoarea celulelor coloanei
-                         String varName // numele coloanei folosit in formule
-)
+                         String varName, // numele coloanei folosit in formule
+                         Integer widthPx // latimea in pixeli a coloanei (si a tuturor celuleor din ea)
+                        )
 {
 }

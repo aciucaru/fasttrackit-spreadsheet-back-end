@@ -8,6 +8,7 @@ import java.util.Optional;
 import ro.fasttrackit.backend.model.SpreadsheetEntity;
 import ro.fasttrackit.backend.repository.SpreadsheetRepository;
 
+@Service
 public class SpreadsheetService
 {
     private final SpreadsheetRepository repo;

@@ -11,7 +11,6 @@ public record CellStyle(Boolean hasCustomBGColor, // daca celula are un backgrou
 
                         Boolean hasCustomFont, // daca celula are font propriu, diferit de cel default
                         String font, // fontul propriu
-
                         Boolean isBold, // daca textul celulei este bold
                         Boolean isItalic, // daca textul celulei este italic
 

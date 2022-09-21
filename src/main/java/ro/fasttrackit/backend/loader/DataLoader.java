@@ -39,56 +39,87 @@ public class DataLoader implements CommandLineRunner
     {
         CellStyle defaultCellStyle = new CellStyle
                 (
-                        false,
-                        "#bbffff",
+                    false,
+                    "#ffffff", // bg color
 
-                        false,
-                        "#000000",
+                    false,
+                    "#000000", // fg color
 
-                        false,
-                        "Arial, sans-serif",
+                    false,
+                    "Arial, sans-serif", // font
+                    false, // bold
+                    false, // italic
 
-                        false,
-                        false,
+                    false,
+                    "#000000", // border color
 
-                        false,
-                        "#000000",
-
-                        false,
-                        1
+                    false,
+                    1 // border thickness
                 );
 
-        Row row1 = new Row(List.of(new Cell("0", defaultCellStyle),
-                new Cell("a", defaultCellStyle),
-                new Cell("true", defaultCellStyle)
-        ));
+        Row row1 = new Row(List.of(new Cell("abc", 0.0, false, defaultCellStyle),
+                                    new Cell("abc", 0.0, false, defaultCellStyle),
+                                    new Cell("abc", 0.0, false, defaultCellStyle)
+                                    ),
+                                20 // inaltimea in pixeli a randului
+                            );
 
-        Row row2 = new Row(List.of(new Cell("1", defaultCellStyle),
-                new Cell("b", defaultCellStyle),
-                new Cell("false", defaultCellStyle)
-        ));
+        Row row2 = new Row(List.of(new Cell("def", 1.0, true, defaultCellStyle),
+                                    new Cell("def", 1.0, true, defaultCellStyle),
+                                    new Cell("def", 1.0, true, defaultCellStyle)
+                                    ),
+                                20 // inaltimea in pixeli a randului
+                            );
 
-        Row row3 = new Row(List.of(new Cell("2", defaultCellStyle),
-                new Cell("c", defaultCellStyle),
-                new Cell("true", defaultCellStyle)
-        ));
+        Row row3 = new Row(List.of(new Cell("ghi", 2.0, false, defaultCellStyle),
+                                    new Cell("ghi", 2.0, false, defaultCellStyle),
+                                    new Cell("ghi", 2.0, false, defaultCellStyle)
+                                    ),
+                                20 // inaltimea in pixeli a randului
+                            );
 
-        Row row4 = new Row(List.of(new Cell("3", defaultCellStyle),
-                new Cell("d", defaultCellStyle),
-                new Cell("true", defaultCellStyle)
-        ));
+        Row row4 = new Row(List.of(new Cell("jkl", 3.0, false, defaultCellStyle),
+                                    new Cell("jkl", 3.0, false, defaultCellStyle),
+                                    new Cell("jkl", 3.0, false, defaultCellStyle)
+                                    ),
+                                20 // inaltimea in pixeli a randului
+                            );
 
-        Row row5 = new Row(List.of(new Cell("4", defaultCellStyle),
-                new Cell("e", defaultCellStyle),
-                new Cell("false", defaultCellStyle)
-        ));
+        Row row5 = new Row(List.of(new Cell("mno", 4.0, true, defaultCellStyle),
+                                    new Cell("mno", 4.0, true, defaultCellStyle),
+                                    new Cell("mno", 4.0, true, defaultCellStyle)
+                                    ),
+                                20 // inaltimea in pixeli a randului
+                            );
 
         List<ColumnInfo> columnInfos =
                 List.of(
-                    new ColumnInfo("Numbers", ColumnType.NUMBER, GeneratingMethod.FROM_USER_INPUT, "string_col"),
-                    new ColumnInfo("Strings", ColumnType.STRING, GeneratingMethod.FROM_USER_INPUT, "string_col"),
-                    new ColumnInfo("Booleans", ColumnType.BOOL, GeneratingMethod.FROM_USER_INPUT, "bool_col")
-                );
+                        new ColumnInfo("Numbers",
+                                        ColumnType.NUMBER,
+                                        GeneratingMethod.FROM_USER_INPUT,
+                                        "string_col",
+                                        70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Strings",
+                                        ColumnType.STRING,
+                                        GeneratingMethod.FROM_USER_INPUT,
+                                        "string_col",
+                                        70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Booleans",
+                                        ColumnType.BOOL,
+                                        GeneratingMethod.FROM_USER_INPUT,
+                                        "bool_col",
+                                        70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Numbers 2",
+                                ColumnType.NUMBER,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "num_col2",
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("String 2",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "string_col2",
+                                70) // latimea in pixeli a coloanei
+                    );
         SpreadsheetEntity tableEntity = new SpreadsheetEntity(randomUUID().toString(),
                 "Test table",
                 columnInfos,
