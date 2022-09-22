@@ -39,36 +39,27 @@ public class DataLoader implements CommandLineRunner
     {
         CellStyle defaultCellStyle = new CellStyle
                 (
-                    false,
-                    "#ffffff", // bg color
-
-                    false,
-                    "#000000", // fg color
-
-                    false,
-                    "Arial, sans-serif", // font
+                    false, "#ffffff", // bg color
+                    false, "#000000", // fg color
+                    false, "Arial, sans-serif", // font
                     false, // bold
                     false, // italic
-
-                    false,
-                    "#000000", // border color
-
-                    false,
-                    1 // border thickness
+                    false, "#000000", // border color
+                    false, 1 // border thickness
                 );
 
         Row row1 = new Row(List.of(new Cell("abc", 0.0, false, defaultCellStyle),
                                     new Cell("abc", 0.0, false, defaultCellStyle),
                                     new Cell("abc", 0.0, false, defaultCellStyle)
                                     ),
-                                20 // inaltimea in pixeli a randului
+                                100 // inaltimea in pixeli a randului
                             );
 
         Row row2 = new Row(List.of(new Cell("def", 1.0, true, defaultCellStyle),
                                     new Cell("def", 1.0, true, defaultCellStyle),
                                     new Cell("def", 1.0, true, defaultCellStyle)
                                     ),
-                                20 // inaltimea in pixeli a randului
+                                40 // inaltimea in pixeli a randului
                             );
 
         Row row3 = new Row(List.of(new Cell("ghi", 2.0, false, defaultCellStyle),
@@ -82,14 +73,14 @@ public class DataLoader implements CommandLineRunner
                                     new Cell("jkl", 3.0, false, defaultCellStyle),
                                     new Cell("jkl", 3.0, false, defaultCellStyle)
                                     ),
-                                20 // inaltimea in pixeli a randului
+                                100 // inaltimea in pixeli a randului
                             );
 
         Row row5 = new Row(List.of(new Cell("mno", 4.0, true, defaultCellStyle),
                                     new Cell("mno", 4.0, true, defaultCellStyle),
                                     new Cell("mno", 4.0, true, defaultCellStyle)
                                     ),
-                                20 // inaltimea in pixeli a randului
+                                80 // inaltimea in pixeli a randului
                             );
 
         List<ColumnInfo> columnInfos =
@@ -98,7 +89,7 @@ public class DataLoader implements CommandLineRunner
                                         ColumnType.NUMBER,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "string_col",
-                                        70), // latimea in pixeli a coloanei
+                                        10), // latimea in pixeli a coloanei
                         new ColumnInfo("Strings",
                                         ColumnType.STRING,
                                         GeneratingMethod.FROM_USER_INPUT,
@@ -108,22 +99,12 @@ public class DataLoader implements CommandLineRunner
                                         ColumnType.BOOL,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "bool_col",
-                                        70), // latimea in pixeli a coloanei
-                        new ColumnInfo("Numbers 2",
-                                ColumnType.NUMBER,
-                                GeneratingMethod.FROM_USER_INPUT,
-                                "num_col2",
-                                70), // latimea in pixeli a coloanei
-                        new ColumnInfo("String 2",
-                                ColumnType.STRING,
-                                GeneratingMethod.FROM_USER_INPUT,
-                                "string_col2",
-                                70) // latimea in pixeli a coloanei
+                                        200) // latimea in pixeli a coloanei
                     );
         SpreadsheetEntity tableEntity = new SpreadsheetEntity(randomUUID().toString(),
                 "Test table",
                 columnInfos,
-                List.of(row1, row2, row3));
+                List.of(row1, row2, row3, row4, row5));
         tableRepo.save(tableEntity);
 
         SpreadsheetPermissionsEntity user1Permissions = new SpreadsheetPermissionsEntity(randomUUID().toString(),
