@@ -59,21 +59,21 @@ public class DataLoader implements CommandLineRunner
                                     new Cell("def", 1.0, true, defaultCellStyle),
                                     new Cell("def", 1.0, true, defaultCellStyle)
                                     ),
-                                40 // inaltimea in pixeli a randului
+                                70 // inaltimea in pixeli a randului
                             );
 
         Row row3 = new Row(List.of(new Cell("ghi", 2.0, false, defaultCellStyle),
                                     new Cell("ghi", 2.0, false, defaultCellStyle),
                                     new Cell("ghi", 2.0, false, defaultCellStyle)
                                     ),
-                                20 // inaltimea in pixeli a randului
+                                70 // inaltimea in pixeli a randului
                             );
 
         Row row4 = new Row(List.of(new Cell("jkl", 3.0, false, defaultCellStyle),
                                     new Cell("jkl", 3.0, false, defaultCellStyle),
                                     new Cell("jkl", 3.0, false, defaultCellStyle)
                                     ),
-                                100 // inaltimea in pixeli a randului
+                                150 // inaltimea in pixeli a randului
                             );
 
         Row row5 = new Row(List.of(new Cell("mno", 4.0, true, defaultCellStyle),
@@ -88,18 +88,18 @@ public class DataLoader implements CommandLineRunner
                         new ColumnInfo("Numbers",
                                         ColumnType.NUMBER,
                                         GeneratingMethod.FROM_USER_INPUT,
-                                        "string_col",
-                                        10), // latimea in pixeli a coloanei
+                                        "numCcol",
+                                        20), // latimea in pixeli a coloanei
                         new ColumnInfo("Strings",
                                         ColumnType.STRING,
                                         GeneratingMethod.FROM_USER_INPUT,
-                                        "string_col",
-                                        70), // latimea in pixeli a coloanei
+                                        "stringCol",
+                                        20), // latimea in pixeli a coloanei
                         new ColumnInfo("Booleans",
                                         ColumnType.BOOL,
                                         GeneratingMethod.FROM_USER_INPUT,
-                                        "bool_col",
-                                        200) // latimea in pixeli a coloanei
+                                        "boolCol",
+                                        20) // latimea in pixeli a coloanei
                     );
         SpreadsheetEntity tableEntity = new SpreadsheetEntity(randomUUID().toString(),
                 "Test table",
