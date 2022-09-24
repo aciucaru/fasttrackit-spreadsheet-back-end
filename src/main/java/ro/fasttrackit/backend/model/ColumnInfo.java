@@ -37,7 +37,7 @@ Exemplu:
  Indexul se refera la pozitia celulei in cadrul coloanei, adica de sus in jos, nu la pozitia celulei in cadrul
 randului din care face.
 * */
-public record ColumnInfo(String name, // numele afisat al coloanei (un fel de "header" sau "caption")
+public record ColumnInfo(String title, // numele afisat al coloanei (un fel de "header" sau "caption")
                          ColumnType colType, // tipul tuturor celulelor coloanei
                          GeneratingMethod genMethod, // modul in care se genereaza valoarea celulelor coloanei
                          String varName, // numele coloanei folosit in formule

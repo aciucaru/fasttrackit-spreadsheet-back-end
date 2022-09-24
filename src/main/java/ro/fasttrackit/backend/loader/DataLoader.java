@@ -88,18 +88,18 @@ public class DataLoader implements CommandLineRunner
                         new ColumnInfo("Numbers",
                                         ColumnType.NUMBER,
                                         GeneratingMethod.FROM_USER_INPUT,
-                                        "numCcol",
-                                        20), // latimea in pixeli a coloanei
+                                        "numCol",
+                                        100), // latimea in pixeli a coloanei
                         new ColumnInfo("Strings",
                                         ColumnType.STRING,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "stringCol",
-                                        20), // latimea in pixeli a coloanei
+                                        100), // latimea in pixeli a coloanei
                         new ColumnInfo("Booleans",
                                         ColumnType.BOOL,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "boolCol",
-                                        20) // latimea in pixeli a coloanei
+                                        100) // latimea in pixeli a coloanei
                     );
         SpreadsheetEntity tableEntity = new SpreadsheetEntity(randomUUID().toString(),
                 "Test table",
