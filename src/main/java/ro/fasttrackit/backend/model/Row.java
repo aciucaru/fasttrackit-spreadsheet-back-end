@@ -7,8 +7,6 @@ import java.util.List;
    Un rand este la randul lui un sir de celule. Ca Spreadsheet-ul sa fie uniform, este necesar ca toate
    randurile sa aiba acelasi numar de celule.
 * */
-public record Row(List<Cell> cells, // celulele din acest rand
-                    Integer heightPx // inaltimea randului (si a tututror celulelor din acest rand)
-                    )
+public record Row(List<Cell> cells)
 {
 }

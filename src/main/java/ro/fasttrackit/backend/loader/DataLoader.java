@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ro.fasttrackit.backend.authentication.model.*;
@@ -39,48 +40,43 @@ public class DataLoader implements CommandLineRunner
     {
         CellStyle defaultCellStyle = new CellStyle
                 (
-                    false, "#ffffff", // bg color
-                    false, "#000000", // fg color
-                    false, "Arial, sans-serif", // font
+                    "#ffffff", // bg color
+                    "#000000", // fg color
+                    "#000000", // border color
+
+                    "Arial, sans-serif", // font
                     false, // bold
-                    false, // italic
-                    false, "#000000", // border color
-                    false, 1 // border thickness
+                    false // italic
                 );
 
         Row row1 = new Row(List.of(new Cell("abc", 0.0, false, defaultCellStyle),
                                     new Cell("abc", 0.0, false, defaultCellStyle),
                                     new Cell("abc", 0.0, false, defaultCellStyle)
-                                    ),
-                                100 // inaltimea in pixeli a randului
+                                    )
                             );
 
         Row row2 = new Row(List.of(new Cell("def", 1.0, true, defaultCellStyle),
                                     new Cell("def", 1.0, true, defaultCellStyle),
                                     new Cell("def", 1.0, true, defaultCellStyle)
-                                    ),
-                                70 // inaltimea in pixeli a randului
+                                    )
                             );
 
         Row row3 = new Row(List.of(new Cell("ghi", 2.0, false, defaultCellStyle),
                                     new Cell("ghi", 2.0, false, defaultCellStyle),
                                     new Cell("ghi", 2.0, false, defaultCellStyle)
-                                    ),
-                                70 // inaltimea in pixeli a randului
+                                    )
                             );
 
         Row row4 = new Row(List.of(new Cell("jkl", 3.0, false, defaultCellStyle),
                                     new Cell("jkl", 3.0, false, defaultCellStyle),
                                     new Cell("jkl", 3.0, false, defaultCellStyle)
-                                    ),
-                                150 // inaltimea in pixeli a randului
+                                    )
                             );
 
         Row row5 = new Row(List.of(new Cell("mno", 4.0, true, defaultCellStyle),
                                     new Cell("mno", 4.0, true, defaultCellStyle),
                                     new Cell("mno", 4.0, true, defaultCellStyle)
-                                    ),
-                                80 // inaltimea in pixeli a randului
+                                    )
                             );
 
         List<ColumnInfo> columnInfos =
@@ -89,22 +85,29 @@ public class DataLoader implements CommandLineRunner
                                         ColumnType.NUMBER,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "numCol",
-                                        100), // latimea in pixeli a coloanei
+                                        "",
+                                        70), // latimea in pixeli a coloanei
                         new ColumnInfo("Strings",
                                         ColumnType.STRING,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "stringCol",
-                                        100), // latimea in pixeli a coloanei
+                                        "",
+                                        70), // latimea in pixeli a coloanei
                         new ColumnInfo("Booleans",
                                         ColumnType.BOOL,
                                         GeneratingMethod.FROM_USER_INPUT,
                                         "boolCol",
-                                        100) // latimea in pixeli a coloanei
+                                        "",
+                                        70) // latimea in pixeli a coloanei
                     );
+        List<ChartInfo> charts = new ArrayList<ChartInfo>();
         SpreadsheetEntity tableEntity = new SpreadsheetEntity(randomUUID().toString(),
                 "Test table",
                 columnInfos,
-                List.of(row1, row2, row3, row4, row5));
+                List.of(row1, row2, row3, row4, row5),
+                40, // indexColWidthPx
+                charts
+                );
         tableRepo.save(tableEntity);
 
         SpreadsheetPermissionsEntity user1Permissions = new SpreadsheetPermissionsEntity(randomUUID().toString(),
