@@ -20,19 +20,16 @@ public class DataLoader implements CommandLineRunner
 {
     private final SpreadsheetRepository tableRepo;
     private final UserRepository userRepo;
-    private final SpreadsheetPermissionsRepository tablePermissionsRepo;
     //    @Autowired
     private final PasswordEncoder passwordEncoder;
 
     public DataLoader(SpreadsheetRepository tableRepo,
                       UserRepository userRepo,
-                      SpreadsheetPermissionsRepository tablePermissionsRepo,
                       PasswordEncoder passwordEncoder)
     {
         this.tableRepo = tableRepo;
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
-        this.tablePermissionsRepo = tablePermissionsRepo;
     }
 
     @Override
@@ -110,14 +107,6 @@ public class DataLoader implements CommandLineRunner
                 );
         tableRepo.save(tableEntity);
 
-        SpreadsheetPermissionsEntity user1Permissions = new SpreadsheetPermissionsEntity(randomUUID().toString(),
-                tableEntity, true, true);
-        SpreadsheetPermissionsEntity user2Permissions = new SpreadsheetPermissionsEntity(randomUUID().toString(),
-                tableEntity, true, false);
-        SpreadsheetPermissionsEntity user3Permissions = new SpreadsheetPermissionsEntity(randomUUID().toString(),
-                tableEntity, false, false);
-        tablePermissionsRepo.saveAll(List.of(user1Permissions, user2Permissions, user3Permissions));
-
         UserEntity user1 = new UserEntity(randomUUID().toString(),
                                         "admin",
                                         passwordEncoder.encode("secret"),
@@ -125,7 +114,8 @@ public class DataLoader implements CommandLineRunner
                                         List.of(new SimpleGrantedAuthority("READ"),
                                                 new SimpleGrantedAuthority("WRITE")),
                                         "admin@sheets.com",
-                                        List.of(user1Permissions));
+                                        List.of(tableEntity)
+                                        );
 
         UserEntity user2 = new UserEntity(randomUUID().toString(),
                                         "andrei",
@@ -134,7 +124,8 @@ public class DataLoader implements CommandLineRunner
                                         List.of(new SimpleGrantedAuthority("READ"),
                                                 new SimpleGrantedAuthority("WRITE")),
                                         "andrei123@gmail.com",
-                                        List.of(user2Permissions));
+                                        List.of(tableEntity)
+                                        );
 
         UserEntity user3 = new UserEntity(randomUUID().toString(),
                                         "alex",
@@ -143,7 +134,8 @@ public class DataLoader implements CommandLineRunner
                                         List.of(new SimpleGrantedAuthority("READ"),
                                                 new SimpleGrantedAuthority("WRITE")),
                                         "alex2000@test.com",
-                                        List.of(user3Permissions));
+                                        List.of(tableEntity)
+                                        );
 
         userRepo.saveAll(List.of(user1, user2, user3));
     }

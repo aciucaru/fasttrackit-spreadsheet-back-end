@@ -26,39 +26,97 @@ import java.util.ArrayList;
 public class SecurityConfig
 {
     @Bean
-    SecurityFilterChain httpSecurityConfig(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(
-                authz -> authz.mvcMatchers("/**").permitAll()
-        );
+    SecurityFilterChain httpSecurityConfig(HttpSecurity httpSecurity) throws Exception
+    {
+//        httpSecurity.authorizeHttpRequests(
+//                authz -> authz.mvcMatchers("/**").permitAll()
+//        );
+
+//        httpSecurity.authorizeHttpRequests(
+//                authz -> authz.anyRequest()
+//                                .authenticated()
+//        );
+
+        httpSecurity
+//                .csrf()
+//                    .disable()
+                    .authorizeRequests()
+                        .antMatchers("/admin/**").hasRole("ADMIN")
+                        .antMatchers("/anonymous*").anonymous()
+                        .antMatchers("/", "/home", "/login*").permitAll()
+                        .anyRequest().authenticated()
+                        .and()
+                    .formLogin()
+//                        .loginPage("/login.html") // pagina personalizata de login
+                        .loginProcessingUrl("/perform_login")
+                        .defaultSuccessUrl("/homepage.html", true)
+                        .failureUrl("/login.html?error=true")
+                        .permitAll() // oricine are voie sa faca login
+//                    .failureHandler(authenticationFailureHandler())
+                        .and()
+                    .logout()
+                        .logoutUrl("/perform_logout")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID");
+//                    .logoutSuccessHandler(logoutSuccessHandler());
+
+
+//            .authorizeRequests()
+//            .antMatchers("/admin/**")
+//            .hasRole("ADMIN")
+//            .antMatchers("/anonymous*")
+//            .anonymous()
+//            .antMatchers("/login*")
+//            .permitAll()
+//            .anyRequest()
+//            .authenticated()
+//
+//            .and()
+//            .formLogin()
+//            .loginPage("/login.html")
+//            .loginProcessingUrl("/perform_login")
+//            .defaultSuccessUrl("/homepage.html", true)
+//            .failureUrl("/login.html?error=true")
+//
+//            .and()
+//            .logout()
+//            .logoutUrl("/perform_logout")
+//            .invalidateHttpSession(true)
+//            .deleteCookies("JSESSIONID");
 
         return httpSecurity.build();
     }
 
     @Bean
 //    @Autowired // pentru UserRepository, optional?
-    InMemoryUserDetailsManager userDetailManager(UserRepository userRepo) {
+    InMemoryUserDetailsManager userDetailManager(UserRepository userRepo)
+    {
         ArrayList<UserDetails> userDetails = new ArrayList<UserDetails>();
 
-        for (UserEntity user : userRepo.findAll()) {
+        for(UserEntity user : userRepo.findAll())
+        {
             userDetails.add(User.builder()
-                    .username(user.getUsername())
-                    .password(user.getPassword())
-                    .authorities(user.getAuthorities())
-                    .build());
+                                .username(user.getUsername())
+                                .password(user.getPassword())
+                                .authorities(user.getAuthorities())
+                                .build()
+                            );
         }
 
         return new InMemoryUserDetailsManager(userDetails);
     }
 
     @Bean
-    PasswordEncoder passwordEncoder() {
+    PasswordEncoder passwordEncoder()
+    {
         return new BCryptPasswordEncoder(12);
 //        return NoOpPasswordEncoder.getInstance();
     }
 
 
     @Bean
-    public DaoAuthenticationProvider authProvider(CustomUserDetailsService userDetailsService) {
+    public DaoAuthenticationProvider authProvider(CustomUserDetailsService userDetailsService)
+    {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setPasswordEncoder(passwordEncoder());
         authProvider.setUserDetailsService(userDetailsService);

@@ -10,6 +10,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+import ro.fasttrackit.backend.model.SpreadsheetEntity;
+
 @Document(collection = "users")
 public record UserEntity(@Id String id,
                          @Indexed(unique = true) String username,
@@ -20,7 +22,7 @@ public record UserEntity(@Id String id,
                          Boolean enabled,
                          List<GrantedAuthority> authorities,
                          @Indexed(unique = true) String email,
-                         @DBRef List<SpreadsheetPermissionsEntity> accesibleSpreadsheets
+                         @DBRef List<SpreadsheetEntity> personalSpreadsheets
 ) implements UserDetails
 {
     @Override
