@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import ro.fasttrackit.backend.model.SpreadsheetEntity;
+import ro.fasttrackit.backend.model.SpreadsheetShortInfo;
 import ro.fasttrackit.backend.service.SpreadsheetService;
 
 @RestController
@@ -29,10 +30,10 @@ public class SpreadsheetController
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("list")
     @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
-    List<SpreadsheetEntity> getAll() { return service.getAll(); }
+    List<SpreadsheetShortInfo> getSpreadsheetList() { return service.getSpreadsheetList(); }
 
     @GetMapping("{id}")
     @ResponseStatus(HttpStatus.OK)

@@ -12,6 +12,7 @@ import ro.fasttrackit.backend.authentication.service.UserService;
 
 @RestController
 @RequestMapping("users")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController
 {
     private final UserService service;
@@ -22,7 +23,6 @@ public class UserController
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:4200")
     public List<SimplifiedUser> getAll()
     {
         return service.getAll();

@@ -4,8 +4,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import ro.fasttrackit.backend.model.SpreadsheetEntity;
+import ro.fasttrackit.backend.model.SpreadsheetShortInfo;
 import ro.fasttrackit.backend.repository.SpreadsheetRepository;
 
 @Service
@@ -21,6 +23,19 @@ public class SpreadsheetService
     public List<SpreadsheetEntity> getAll()
     {
         return repo.findAll();
+    }
+
+    public List<SpreadsheetShortInfo> getSpreadsheetList()
+    {
+        List<SpreadsheetShortInfo> list;
+        list = repo.findAll()
+                    .stream()
+                    .map( (SpreadsheetEntity spreadsheet) ->
+                            new SpreadsheetShortInfo(spreadsheet.id(), spreadsheet.name() )
+                        )
+                    .collect(Collectors.toList());
+
+        return list;
     }
 
     public Optional<SpreadsheetEntity> getById(String id)
