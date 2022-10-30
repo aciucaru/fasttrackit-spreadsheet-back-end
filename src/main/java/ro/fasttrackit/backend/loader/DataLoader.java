@@ -301,13 +301,6 @@ public class DataLoader implements CommandLineRunner
 
     private SpreadsheetEntity generateSpreadsheet2()
     {
-
-
-
-
-
-
-
         List<ColumnInfo> columnInfos =
                 List.of(
                         new ColumnInfo("Order Date",
@@ -466,7 +459,246 @@ public class DataLoader implements CommandLineRunner
                             );
 
         SpreadsheetEntity spreadsheet = new SpreadsheetEntity(randomUUID().toString(),
-                "Test table",
+                "Sales orders",
+                columnInfos,
+                List.of(row1, row2, row3, row4, row5,
+                        row6, row7, row8, row9, row10),
+                40, // indexColWidthPx
+                charts
+        );
+
+        return spreadsheet;
+    }
+
+    private SpreadsheetEntity generateSpreadsheet3()
+    {
+        List<ColumnInfo> columnInfos =
+                List.of(
+                        new ColumnInfo("Policy",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "policy",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Expiry",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "expiry",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Location",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "location",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("State",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "state",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Region",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "region",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Insured Value",
+                                ColumnType.NUMBER,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "insuredValue",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Construction",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "construction",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Business Type",
+                                ColumnType.STRING,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "businessType",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Earthquake",
+                                ColumnType.BOOL,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "earthquake",
+                                "", // formula
+                                70), // latimea in pixeli a coloanei
+                        new ColumnInfo("Flood",
+                                ColumnType.BOOL,
+                                GeneratingMethod.FROM_USER_INPUT,
+                                "flood",
+                                "", // formula
+                                70) // latimea in pixeli a coloanei
+                );
+        List<ChartInfo> charts = new ArrayList<ChartInfo>();
+
+        Row row1 = new Row(List.of(
+                                new Cell("100242", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("2-Jan-21", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("NY", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("East", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("1617630", 1617630.0, true, generateDefaultCellStyle()),
+                                new Cell("Frame", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Retail", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("false", 0.0, false, generateDefaultCellStyle()),
+                                new Cell("false", 0.0, false, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row2 = new Row(List.of(
+                                new Cell("100314", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("3-Mar-21", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("NY", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("East", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("8678500", 8678500.0, true, generateDefaultCellStyle()),
+                                new Cell("Fire Resist", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Apartment", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("true", 1.0, true, generateDefaultCellStyle()),
+                                new Cell("true", 1.0, true, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row3 = new Row(List.of(
+                                new Cell("100359", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("2-Jan-21", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Rural", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("WI", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("Midwest", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("2052660", 2052660.0, true, generateDefaultCellStyle()),
+                                new Cell("Frame", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Farming", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("false", 0.0, false, generateDefaultCellStyle()),
+                                new Cell("false", 0.0, false, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row4 = new Row(List.of(
+                                new Cell("100429", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("9-Jan-21", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("IL", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("Midwest", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("4036000", 4036000.0, true, generateDefaultCellStyle()),
+                                new Cell("Masonry", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Retail", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("true", 1.0, true, generateDefaultCellStyle()),
+                                new Cell("false", 0.0, false, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row5 = new Row(List.of(
+                                new Cell("100426", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("16-Jan-20", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("VT", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("Northeast", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("2432875", 2432875.0, true, generateDefaultCellStyle()),
+                                new Cell("Fire Resist", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Apartment", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("false", 0.0, false, generateDefaultCellStyle()),
+                                new Cell("false", 0.0, false, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row6 = new Row(List.of(
+                                new Cell("100252", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("17-Oct-19", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("OH", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("Central", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("1529600", 1529600.0, true, generateDefaultCellStyle()),
+                                new Cell("Masonry", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Apartment", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("false", 0.0, false, generateDefaultCellStyle()),
+                                new Cell("true", 1.0, true, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row7 = new Row(List.of(
+                                new Cell("100382", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("19-Jan-21", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("NJ", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("East", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("2328650", 2328650.0, true, generateDefaultCellStyle()),
+                                new Cell("Frame", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Organization", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("false", 0.0, false, generateDefaultCellStyle()),
+                                new Cell("false", 0.0, false, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row8 = new Row(List.of(
+                                new Cell("100381", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("23-Jul-18", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("VT", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("Northeast", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("7203500", 7203500.0, true, generateDefaultCellStyle()),
+                                new Cell("Frame", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Office Bldg", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("true", 1.0, true, generateDefaultCellStyle()),
+                                new Cell("true", 1.0, true, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row9 = new Row(List.of(
+                                new Cell("100312", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("25-Jan-17", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Rural", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("IL", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("Midwest", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("3145700", 3145700.0, true, generateDefaultCellStyle()),
+                                new Cell("Frame", 0.0, true, generateDefaultCellStyle()),
+                                new Cell("Education", 0.0, true, generateDefaultCellStyle()),
+
+                                new Cell("true", 1.0, true, generateDefaultCellStyle()),
+                                new Cell("false", 0.0, false, generateDefaultCellStyle())
+                                )
+                            );
+
+        Row row10 = new Row(List.of(
+                new Cell("100656", 0.0, true, generateDefaultCellStyle()),
+                new Cell("6-May-15", 0.0, true, generateDefaultCellStyle()),
+                new Cell("Urban", 0.0, true, generateDefaultCellStyle()),
+                new Cell("MN", 0.0, true, generateDefaultCellStyle()),
+
+                new Cell("Midwest", 0.0, true, generateDefaultCellStyle()),
+                new Cell("1834200", 1834200.0, true, generateDefaultCellStyle()),
+                new Cell("Frame", 0.0, true, generateDefaultCellStyle()),
+                new Cell("Construction", 0.0, true, generateDefaultCellStyle()),
+
+                new Cell("true", 1.0, true, generateDefaultCellStyle()),
+                new Cell("true", 1.0, true, generateDefaultCellStyle())
+        )
+        );
+
+        SpreadsheetEntity spreadsheet = new SpreadsheetEntity(randomUUID().toString(),
+                "Sales orders",
                 columnInfos,
                 List.of(row1, row2, row3, row4, row5,
                         row6, row7, row8, row9, row10),
