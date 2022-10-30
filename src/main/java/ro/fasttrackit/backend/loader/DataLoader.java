@@ -1,8 +1,6 @@
 package ro.fasttrackit.backend.loader;
 
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,16 +18,11 @@ public class DataLoader implements CommandLineRunner
 {
     private final SpreadsheetRepository tableRepo;
     private final UserRepository userRepo;
-    //    @Autowired
-    private final PasswordEncoder passwordEncoder;
 
-    public DataLoader(SpreadsheetRepository tableRepo,
-                      UserRepository userRepo,
-                      PasswordEncoder passwordEncoder)
+    public DataLoader(SpreadsheetRepository tableRepo, UserRepository userRepo)
     {
         this.tableRepo = tableRepo;
         this.userRepo = userRepo;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -723,10 +716,9 @@ public class DataLoader implements CommandLineRunner
         UserEntity user = new UserEntity(
                                         randomUUID().toString(),
                                         "admin",
-                                        passwordEncoder.encode("secret"),
+                                        "secret",
                                         true, true, true, true,
-                                        List.of(new SimpleGrantedAuthority("READ"),
-                                                new SimpleGrantedAuthority("WRITE")),
+                                        List.of("READ", "WRITE"),
                                         "admin@sheets.com",
                                         List.of(spreadsheet)
                                         );
@@ -739,10 +731,9 @@ public class DataLoader implements CommandLineRunner
         UserEntity user = new UserEntity(
                                         randomUUID().toString(),
                                         "andrei",
-                                        passwordEncoder.encode("secret"),
+                                        "secret",
                                         true, true, true, true,
-                                        List.of(new SimpleGrantedAuthority("READ"),
-                                                new SimpleGrantedAuthority("WRITE")),
+                                        List.of("READ", "WRITE"),
                                         "andrei123@gmail.com",
                                         List.of(spreadsheet)
                                         );
@@ -755,10 +746,9 @@ public class DataLoader implements CommandLineRunner
         UserEntity user = new UserEntity(
                                         randomUUID().toString(),
                                         "alex",
-                                        passwordEncoder.encode("secret"),
+                                        "secret",
                                         true, true, true, true,
-                                        List.of(new SimpleGrantedAuthority("READ"),
-                                                new SimpleGrantedAuthority("WRITE")),
+                                        List.of("READ", "WRITE"),
                                         "alex2000@test.com",
                                         List.of(spreadsheet)
                                         );

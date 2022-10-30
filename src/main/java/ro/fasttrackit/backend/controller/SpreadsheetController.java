@@ -1,14 +1,11 @@
 package ro.fasttrackit.backend.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -22,7 +19,7 @@ import ro.fasttrackit.backend.service.SpreadsheetService;
 @RequestMapping("sheets")
 //@CrossOrigin(origins = "http://localhost:4200")
 //@CrossOrigin
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4200/editor", "http://localhost:4200/browse"})
+//@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4200/editor", "http://localhost:4200/browse"})
 public class SpreadsheetController
 {
     private final SpreadsheetService service;
@@ -33,12 +30,12 @@ public class SpreadsheetController
     }
 
     @GetMapping("list")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
     List<SpreadsheetShortInfo> getSpreadsheetList() { return service.getSpreadsheetList(); }
 
     @GetMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
     SpreadsheetEntity getById(@PathVariable String id)
     {
@@ -47,7 +44,7 @@ public class SpreadsheetController
     }
 
     @GetMapping("one")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
     SpreadsheetEntity getOne()
     {
@@ -55,7 +52,7 @@ public class SpreadsheetController
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
     SpreadsheetEntity add(@RequestBody SpreadsheetEntity table)
     {
@@ -64,7 +61,7 @@ public class SpreadsheetController
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
+//    @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
     SpreadsheetEntity delete(@PathVariable String id)
     {
