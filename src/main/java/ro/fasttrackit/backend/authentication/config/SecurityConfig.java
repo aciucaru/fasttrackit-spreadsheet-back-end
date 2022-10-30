@@ -31,27 +31,31 @@ import java.util.Arrays;
 //@EnableWebSecurity
 public class SecurityConfig
 {
-//    @Bean
-//    CorsConfigurationSource corsConfigurationSource()
-//    {
-//        CorsConfiguration configuration = new CorsConfiguration();
-//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
-//        configuration.setAllowCredentials(true);
-//        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
-//        configuration.setExposedHeaders(Arrays.asList("*"));
-//        configuration.setAllowedHeaders(Arrays.asList("*"));
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        source.registerCorsConfiguration("/**", configuration);
-//        return source;
-//    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource()
+    {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedMethods(Arrays.asList("GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        configuration.setExposedHeaders(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
     @Bean
     SecurityFilterChain httpSecurityConfig(HttpSecurity httpSecurity) throws Exception
     {
-        httpSecurity.authorizeHttpRequests(
-                authz -> authz.mvcMatchers("/**").permitAll()
-        );
+        httpSecurity.cors()
+                        .and()
+                    .authorizeHttpRequests(
+                            authz -> authz.mvcMatchers("/**").permitAll()
+                    );
+
         return httpSecurity.build();
+
 //        httpSecurity.authorizeHttpRequests(
 //                authz -> authz.anyRequest()
 //                                .authenticated()
@@ -79,6 +83,7 @@ public class SecurityConfig
 //                        .deleteCookies("JSESSIONID")
 //                        .and()
 //                    .csrf().disable();
+//        return httpSecurity.build();
     }
 
     @Bean

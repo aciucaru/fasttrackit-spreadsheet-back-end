@@ -35,8 +35,17 @@ public class DataLoader implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        tableRepo.save(generateSpreadsheet1());
-        userRepo.saveAll(generateUsers());
+        SpreadsheetEntity spreadsheet1 = generateSpreadsheet1();
+        SpreadsheetEntity spreadsheet2 = generateSpreadsheet2();
+        SpreadsheetEntity spreadsheet3 = generateSpreadsheet3();
+
+        tableRepo.save(spreadsheet1);
+        tableRepo.save(spreadsheet2);
+        tableRepo.save(spreadsheet3);
+
+        userRepo.save(generateUser1(spreadsheet1));
+        userRepo.save(generateUser2(spreadsheet2));
+        userRepo.save(generateUser3(spreadsheet3));
     }
 
     private CellStyle generateDefaultCellStyle()
@@ -698,7 +707,7 @@ public class DataLoader implements CommandLineRunner
         );
 
         SpreadsheetEntity spreadsheet = new SpreadsheetEntity(randomUUID().toString(),
-                "Sales orders",
+                "Insurance",
                 columnInfos,
                 List.of(row1, row2, row3, row4, row5,
                         row6, row7, row8, row9, row10),
@@ -709,9 +718,9 @@ public class DataLoader implements CommandLineRunner
         return spreadsheet;
     }
 
-    private List<UserEntity> generateUsers()
+    private UserEntity generateUser1(SpreadsheetEntity spreadsheet)
     {
-        UserEntity user1 = new UserEntity(
+        UserEntity user = new UserEntity(
                                         randomUUID().toString(),
                                         "admin",
                                         passwordEncoder.encode("secret"),
@@ -719,10 +728,15 @@ public class DataLoader implements CommandLineRunner
                                         List.of(new SimpleGrantedAuthority("READ"),
                                                 new SimpleGrantedAuthority("WRITE")),
                                         "admin@sheets.com",
-                                        List.of(generateSpreadsheet1())
+                                        List.of(spreadsheet)
                                         );
 
-        UserEntity user2 = new UserEntity(
+        return user;
+    }
+
+    private UserEntity generateUser2(SpreadsheetEntity spreadsheet)
+    {
+        UserEntity user = new UserEntity(
                                         randomUUID().toString(),
                                         "andrei",
                                         passwordEncoder.encode("secret"),
@@ -730,10 +744,15 @@ public class DataLoader implements CommandLineRunner
                                         List.of(new SimpleGrantedAuthority("READ"),
                                                 new SimpleGrantedAuthority("WRITE")),
                                         "andrei123@gmail.com",
-                                        List.of(generateSpreadsheet1())
+                                        List.of(spreadsheet)
                                         );
 
-        UserEntity user3 = new UserEntity(
+        return user;
+    }
+
+    private UserEntity generateUser3(SpreadsheetEntity spreadsheet)
+    {
+        UserEntity user = new UserEntity(
                                         randomUUID().toString(),
                                         "alex",
                                         passwordEncoder.encode("secret"),
@@ -741,9 +760,9 @@ public class DataLoader implements CommandLineRunner
                                         List.of(new SimpleGrantedAuthority("READ"),
                                                 new SimpleGrantedAuthority("WRITE")),
                                         "alex2000@test.com",
-                                        List.of(generateSpreadsheet1())
+                                        List.of(spreadsheet)
                                         );
 
-        return List.of(user1, user2, user3);
+        return user;
     }
 }

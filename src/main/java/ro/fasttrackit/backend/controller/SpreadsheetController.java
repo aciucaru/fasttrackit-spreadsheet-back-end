@@ -20,7 +20,9 @@ import ro.fasttrackit.backend.service.SpreadsheetService;
 
 @RestController
 @RequestMapping("sheets")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:4200/editor", "http://localhost:4200/browse"})
 public class SpreadsheetController
 {
     private final SpreadsheetService service;
