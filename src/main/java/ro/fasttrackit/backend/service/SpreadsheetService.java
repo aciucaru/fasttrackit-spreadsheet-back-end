@@ -12,6 +12,8 @@ import ro.fasttrackit.backend.model.SpreadsheetEntity;
 import ro.fasttrackit.backend.model.SpreadsheetShortInfo;
 import ro.fasttrackit.backend.repository.SpreadsheetRepository;
 
+import static java.util.UUID.randomUUID;
+
 @Service
 public class SpreadsheetService
 {
@@ -45,10 +47,11 @@ public class SpreadsheetService
         return repo.findById(id);
     }
 
-    public Optional<SpreadsheetEntity> add(SpreadsheetEntity table)
+    public Optional<SpreadsheetEntity> add(SpreadsheetEntity spreadsheet)
     {
-        SpreadsheetEntity tableEntity = repo.save(table);
-        return Optional.of(tableEntity);
+        SpreadsheetEntity spreadsheetEntity = repo.save(spreadsheet);
+        System.out.println("SpreadsheetService ADD");
+        return Optional.of(spreadsheetEntity);
     }
 
     public SpreadsheetEntity replace(String id, SpreadsheetEntity newSpreadsheet)
@@ -58,17 +61,13 @@ public class SpreadsheetService
 //            return repo.save(optSpreadsheet.get());
 //        else
 //            return repo.save(newSpreadsheet);
-
+        System.out.println("SpreadsheetService REPLACE");
         return repo.findById(id)
                 .map( currentSpreadsheet ->
-                        {
-                            return repo.save(currentSpreadsheet.withDataFrom(newSpreadsheet));
-                        }
+                        { return repo.save(currentSpreadsheet.withDataFrom(newSpreadsheet)); }
                 )
                 .orElseGet( () ->
-                        {
-                            return repo.save(newSpreadsheet.withId(id));
-                        }
+                        { return repo.save(newSpreadsheet.withId(randomUUID().toString())); }
                 );
     }
 

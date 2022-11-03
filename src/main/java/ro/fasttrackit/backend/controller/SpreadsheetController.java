@@ -34,7 +34,11 @@ public class SpreadsheetController
     @GetMapping("list")
 //    @ResponseStatus(HttpStatus.OK)
 //    @CrossOrigin(origins = "http://localhost:4200")
-    List<SpreadsheetShortInfo> getSpreadsheetList() { return service.getSpreadsheetList(); }
+    List<SpreadsheetShortInfo> getSpreadsheetList()
+    {
+        System.out.println("SpreadsheetController GET");
+        return service.getSpreadsheetList();
+    }
 
     @GetMapping("{id}")
 //    @ResponseStatus(HttpStatus.OK)
@@ -42,6 +46,7 @@ public class SpreadsheetController
     SpreadsheetEntity getById(@PathVariable String id)
     {
         Optional<SpreadsheetEntity> optSpreadsheet = service.getById(id);
+        System.out.println("SpreadsheetController GET");
         return optSpreadsheet.orElse(null);
     }
 
@@ -59,12 +64,14 @@ public class SpreadsheetController
     SpreadsheetEntity add(@RequestBody SpreadsheetEntity spreadsheet)
     {
         Optional<SpreadsheetEntity> optSpreadsheet = service.add(spreadsheet);
+        System.out.println("SpreadsheetController POST");
         return optSpreadsheet.orElse(null);
     }
 
     @PutMapping("{id}")
     SpreadsheetEntity replace(@PathVariable String id, @RequestBody SpreadsheetEntity newSpreadsheet)
     {
+        System.out.println("SpreadsheetController PUT");
         return service.replace(id, newSpreadsheet);
     }
 
