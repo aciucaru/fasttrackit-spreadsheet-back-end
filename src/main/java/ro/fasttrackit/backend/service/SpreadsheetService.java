@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import ro.fasttrackit.backend.model.SpreadsheetEntity;
 import ro.fasttrackit.backend.model.SpreadsheetShortInfo;
 import ro.fasttrackit.backend.repository.SpreadsheetRepository;
@@ -49,9 +51,29 @@ public class SpreadsheetService
         return Optional.of(tableEntity);
     }
 
-    public Optional<SpreadsheetEntity> delete(String id)
+    public SpreadsheetEntity replace(String id, SpreadsheetEntity newSpreadsheet)
     {
-        Optional<SpreadsheetEntity> optTableEntity = repo.findById(id);
-        return optTableEntity;
+//        Optional<SpreadsheetEntity> optSpreadsheet = repo.findById(id);
+//        if(optSpreadsheet.isPresent())
+//            return repo.save(optSpreadsheet.get());
+//        else
+//            return repo.save(newSpreadsheet);
+
+        return repo.findById(id)
+                .map( currentSpreadsheet ->
+                        {
+                            return repo.save(currentSpreadsheet.withDataFrom(newSpreadsheet));
+                        }
+                )
+                .orElseGet( () ->
+                        {
+                            return repo.save(newSpreadsheet.withId(id));
+                        }
+                );
+    }
+
+    public void delete(String id)
+    {
+        repo.deleteById(id);
     }
 }
