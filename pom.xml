@@ -37,6 +37,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>spreadsheet_back_end</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

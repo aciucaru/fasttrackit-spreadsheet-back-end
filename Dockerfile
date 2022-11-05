@@ -8,7 +8,7 @@ RUN mvn install
 #EXECUTE
 FROM eclipse-temurin:17.0.4.1_1-jre
 WORKDIR /app/
-COPY --from=build /app/target/invoice-service.jar /app/invoice-service.jar
+COPY --from=build /app/target/spreadsheet_back_end.jar /app/spreadsheet_back_end.jar
 EXPOSE 8080
 RUN ls -la
 
