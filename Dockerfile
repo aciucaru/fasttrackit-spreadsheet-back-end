@@ -13,4 +13,4 @@ EXPOSE 8080
 RUN ls -la
 
 #CMD "pwd"
-ENTRYPOINT ["sh", "-c", "java -jar /app/invoice-service.jar"]
+ENTRYPOINT ["sh", "-c", "java -jar /app/spreadsheet_back_end.jar"]
